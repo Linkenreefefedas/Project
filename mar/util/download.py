@@ -1,6 +1,7 @@
 import os
 from tqdm import tqdm
 import requests
+import argparse
 
 
 def download_pretrained_vae(overwrite=False):
@@ -56,7 +57,11 @@ def download_pretrained_marh(overwrite=False):
 
 
 if __name__ == "__main__":
-    download_pretrained_vae()
-    download_pretrained_marb()
-    download_pretrained_marl()
-    download_pretrained_marh()
+    parser = argparse.ArgumentParser(description="Download pretrained models.")
+    parser.add_argument('--overwrite', action='store_true', help='Overwrite existing files if they are incomplete.')
+    args = parser.parse_args()
+
+    download_pretrained_vae(overwrite=args.overwrite)
+    download_pretrained_marb(overwrite=args.overwrite)
+    download_pretrained_marl(overwrite=args.overwrite)
+    download_pretrained_marh(overwrite=args.overwrite)
